@@ -1,0 +1,899 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% -------- Mise en page----------
+\usepackage{color}
+\usepackage{multicol}
+\usepackage{csquotes}
+%\setlength{\columnseprule}{0.4pt}
+\setlength{\columnsep}{3em}
+\usepackage{setspace}
+
+\usepackage{microtype}
+\DisableLigatures{}
+
+\usepackage{bbding}
+
+\usepackage{lscape}
+
+% Asymptote
+\usepackage[inline]{asymptote}
+\usepackage{icomma}
+
+\usepackage{xcolor}
+\usepackage{caption}
+
+\usepackage{array,multirow,makecell}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}b{#1}}
+
+
+\usepackage{enumerate}
+
+%\usepackage{framed}
+%\usepackage[framed]{ntheorem}
+
+% ---------  Packages de maths------------
+\usepackage{amsmath,amssymb}
+%\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+
+\usepackage{animate}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{ifpdf}
+
+%------------- Packages pour les graphiques et dessins ----------------
+\usepackage{graphicx}
+
+\usepackage{numprint}
+
+\usepackage{xcolor}
+\usepackage{caption}
+
+% ----------- Macros Maths ----------------------
+
+\newcommand*\N{\mathbb{N}}
+\newcommand*\Z{\mathbb{Z}}
+\newcommand*\Q{\mathbb{Q}}
+\newcommand*\R{\mathbb{R}}
+\newcommand*\C{\mathbb{C}}
+
+\newcommand*\Rd{\mathbb{R}^d}
+\newcommand*\Rm{\mathbb{R}^m}
+\newcommand*\Rp{\mathbb{R}^p}
+
+
+\newcommand*\Mat[2]{\mathbb{R}^{#1 \times{} #2}}
+
+\newcommand*\suite[3]{ \{ #1_{#2} \}_{#2 \in{} #3} }
+
+\newcommand*\expo[1]{ \mathrm{e}^{#1} }
+\newcommand*\e{ \mathrm{e} }
+
+\usepackage{epic,bez123}
+\usepackage{floatflt}% package for floatingfigure environment
+\usepackage{wrapfig}% package for wrapfigure environment
+
+\usepackage{pstricks-add}
+
+\usepackage{listings}
+
+\usetheme{Warsaw}
+
+\title{About Git and GitHub}
+\subtitle{}
+\author{Jérémy Rieussec}
+\institute{University of Montreal}
+\date{\today}
+
+\begin{document}
+	
+	\setbeamercovered{transparent}	
+	
+	% Parametres pour la gestion des captions de figure
+	%\setbeamertemplate{caption}[default]
+	\setbeamertemplate{caption}[numbered]
+	
+	\begin{frame}[plain]
+		\titlepage{}
+	\end{frame}		
+
+	\begin{frame}[plain]
+		\frametitle{Ressources}
+		\small		
+		\url{https://www.coursera.org/learn/version-control-with-git}
+	\end{frame}
+
+
+
+    \begin{frame}[plain]
+		\tableofcontents
+	\end{frame}	
+
+	
+	\section{What is Git?}
+    \begin{frame}[plain]
+		\frametitle{Git is a \textbf{version control software} }
+		\begin{enumerate}
+			\item content
+			\begin{itemize}
+				\item track history of project
+			\end{itemize}
+			\item teams
+			\begin{itemize}
+				\item collaboration, 
+				\item workflows,  $\dots$
+			\end{itemize}
+			\item agility
+			\begin{itemize}
+				\item test
+				\item fix or undo changes
+			\end{itemize}
+		\end{enumerate}
+	\end{frame}	
+
+	\begin{frame}[plain]
+		\frametitle{Distributed version control system}
+		
+		\includegraphics[scale=0.48]{Images/Distributed_version_control.png}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{What is a Git repository?}
+		A series of \textit{snapshots}, also called \textbf{COMMITS}.
+		\begin{center}
+			\includegraphics[scale=0.7]{Images/commits.png}
+
+		\end{center}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{How to use Git?}
+		\begin{enumerate}
+			\item Command line: Git Bash \\
+			\item Git UI \\
+		\end{enumerate}		
+
+		~\linebreak \\
+
+		\textbf{Advise:} master command line 
+		\begin{itemize}
+			\item good for deep understanding
+			\item broadly used in industry
+			\item automatable
+		\end{itemize}
+	\end{frame}
+
+	\section{Setup}
+    \begin{frame}[plain]
+		\frametitle{Work configuration I use and find quite good}
+		\begin{itemize}
+			\item GIT 
+			\item Pycharm: for quick editions, solving conflicts, $\dots$
+			\item Visual code: for project overview
+		\end{itemize}
+		
+	\end{frame}	
+
+	\begin{frame}[plain]
+		\frametitle{Setting GIT}
+
+		\begin{itemize}
+			\item see configuration: \\
+			\begin{center}
+				git config --list
+			\end{center}
+			\item user name: \\
+			\begin{center}
+				git config --global user.name ``Hello''
+			\end{center}
+			\item email: \\
+			\begin{center}
+				git config --global user.email ``Hello.world@gmail.com''
+			\end{center}
+			\item editor: \\
+			\begin{center}
+				git config --global user.editor ``pycharm64.exe''
+			\end{center}
+		\end{itemize}		
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Getting help}
+		
+		\begin{center}
+			git --help  \\
+			git -h
+		\end{center}
+		\begin{center}
+			\includegraphics[scale=0.45]{Images/help_general.png}
+		\end{center}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Getting help on a specific command}
+		
+		\begin{center}
+			git --help $<\text{command\_name}>$ \\
+			git -h $<\text{command\_name}>$
+		\end{center}
+		
+		\textit{Example:} git --help config
+	
+	\end{frame}
+
+	\section{Working directory}
+    \begin{frame}[plain]
+		\frametitle{Git repository}
+
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/working_tree.png}
+		\end{center}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Git repository}
+
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/working_tree_1.png}
+		\end{center}
+	\end{frame}	
+
+	\begin{frame}[plain]
+		\frametitle{Git repository}
+
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/working_tree_2.png}
+		\end{center}
+	\end{frame}	
+	
+	\begin{frame}[plain]
+		\frametitle{Git repository}
+
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/working_tree_3.png}
+		\end{center}
+	\end{frame}	
+
+	\begin{frame}[plain]
+		\frametitle{Git repository}
+
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/working_tree_4.png}
+		\end{center}
+	\end{frame}	
+
+	\section{Adding, commits and references}
+
+	\begin{frame}[plain]
+		\frametitle{Creating and first commits git repository}
+
+		\begin{enumerate}
+			\item git init $\rightarrow$ creation ./git (go check)
+			\begin{center}
+				\includegraphics[scale=0.6]{Images/init.png}
+			\end{center}
+			\item git status
+			\begin{center}
+				\includegraphics[scale=0.5]{Images/status.png}
+			\end{center}
+			\item New modifications are \textcolor{red}{untracked} $\rightarrow$ changes must be \textcolor{green}{staged} to be commited.
+			\begin{itemize}
+				\item git add \textit{filename} 
+				\item git add . (to add all files)
+			\end{itemize}
+			\item git diff
+			
+		\end{enumerate}	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Committing changes}
+
+		\begin{center}
+			git commit -m ``\textit{commit message}''
+		\end{center}
+
+		\begin{center}
+			
+		\end{center}
+		
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{.gitignore}
+		
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/gitignore.png}
+		\end{center}
+		
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{History of commits}
+			 \begin{center}
+				git log 
+				\begin{itemize}
+					\item git log --oneline
+					\item git log --oneline --graph
+					\item git log --oneline --graph --all
+				\end{itemize}
+
+			 \end{center}
+
+			 Every commit has an ID 
+			 \begin{itemize}
+				 \item 40-character hexadecimal string
+				 \item SHA-1 values: small changes in content lead to big differences in value
+			 \end{itemize}
+
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{References}
+		User-friendly name that points to 
+		\begin{itemize}
+			\item a commit SHA-1 hash
+			\item another reference: known as \textit{symbolic reference}
+		 \end{itemize}
+		\begin{center}
+			\includegraphics[scale=0.7]{Images/git_log.png}
+		\end{center}
+				 
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Branch labels}
+		\begin{center}
+			\includegraphics[scale=0.7]{Images/master_ref.png}
+		\end{center}
+		\begin{itemize}
+			\item Points to the most recent commit in the branch, \textit{tip of the branch}.
+			\item implemented as a reference
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{HEAD}
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/HEAD.png}
+		\end{center}
+
+		\begin{itemize}
+			\item A reference to the current commit 
+			\item Usually points to the label of the current branch
+			\item one HEAD per repository
+		\end{itemize}
+		
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/HEAD_master.png}
+		\end{center}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Detached HEAD}
+		HEAD points to the current commit, but we naviguate in commits with:
+		\begin{center}
+			git checkout \textit{commitID}
+		\end{center}
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/detached_HEAD.png}
+		\end{center}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Tags}
+		Reference/label attached to a specific commit.
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/tag.png}
+		\end{center}
+		
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Tags (continued)}
+		
+		To tag a commit:
+		\begin{itemize}
+			\item git tag $<$tagname$>$ $[<$commit$>]$
+			\item $<$commit$>$ defaults to HEAD
+			\item git tag $-$a $-$m ``includes feature 2'' v2.0 $\rightarrow$ annotate a tag with message
+		\end{itemize}
+		To use tags:
+		\begin{itemize}
+			\item git tag $\rightarrow$ show all tags
+			\item git show \textit{tag} $\rightarrow$ tags can be used in git caommands
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Exercice}
+		\begin{itemize}
+			\item git log / git show HEAD / git show master
+			\item check .git before checkout
+			\item check .git after checkout
+		\end{itemize}
+	\end{frame}
+
+	\section{Branching}
+    \begin{frame}[plain]
+		\frametitle{What is a branch?}
+		A \textit{branch} is the set of commits that trace back to the project's first commit
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/What_is_branch.png}
+		\end{center}
+		\textit{Example:}
+		\begin{itemize}
+			\item master: A and B
+			\item featureX: A, B and C
+		\end{itemize}
+	\end{frame}	
+
+	\begin{frame}[plain]
+		\frametitle{Advantages branches}
+		
+		\begin{itemize}
+			\item Fast and easy to create 
+			\item Enable experimentation
+					\begin{itemize}
+						\item delete or, 
+						\item merge
+					\end{itemize}
+			\item team development
+		\end{itemize}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Topic and long-lived branches}
+		\begin{itemize}
+			\item Topic: for fixing bugs, adding features, $\dots$ \\
+					$\rightarrow$ very short lived 
+			\item Long-lived \\
+				master, develop, release, $\dots$
+		\end{itemize}
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/Topic_Branch.png}
+		\end{center}
+
+		To view list of banches:
+			\begin{center}
+				git branch
+			\end{center}
+		
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Creating branch}
+		
+		\begin{center}
+			git branch $<\text{name}>$
+		\end{center}
+		
+		\begin{center}
+			\includegraphics[scale=0.7]{Images/create_branch.png}
+		\end{center}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Checkout branch}
+		
+		\begin{center}
+			git checkout $<\text{branch-name}>$
+		\end{center}
+
+		\begin{enumerate}
+			\item updates the HEAD reference
+			\item updates the working treewith the commit's files
+		\end{enumerate}
+
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/checkout.png}
+		\end{center}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Back to detached HEAD}
+		\begin{enumerate}
+			\item git checkout $<\text{commitID}>$
+			\item git checkout -b $<\text{branch-name}>$ $<\text{commitID}>$
+		\end{enumerate}
+		\begin{center}
+			\includegraphics[scale=0.65]{Images/detached_HEAD_branch.png}
+		\end{center}
+		
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Delete branch, happy situation}
+	
+		\begin{center}
+			git branch -d $<\text{branch-name}>$
+		\end{center}
+		
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/delete_branch.png}
+		\end{center}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Delete branch, dangling commits}
+		
+
+		\begin{center}
+			git branch -D $<\text{branch-name}>$
+		\end{center}
+		
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/delete_branch_D.png}
+		\end{center}
+
+		Consequence: dangling commit that will be garbage collected.
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Creating branch, exercice}
+		
+		Two possilities:
+		\begin{enumerate}
+			\item two command-line
+				\begin{center}
+					git branch $<\text{branch-name}>$ \\
+					git checkout $<\text{branch-name}>$
+				\end{center}
+			\item one command-line
+				\begin{center}
+					git checkout -b $<\text{branch-name}>$
+				\end{center}
+		\end{enumerate}
+	
+		\textit{Exercice:}
+		\begin{enumerate}
+			\item create new branch
+			\item add / commit different files on each branch 
+			\item observe changing working tree with checkout
+		\end{enumerate}
+	
+	\end{frame}
+
+	\section{Merging}
+
+	\begin{frame}[plain]
+		\frametitle{Merging}
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/merge.png}
+		\end{center}
+		
+		Main types of merge:
+		\begin{enumerate}
+			\item Fast-forward
+			\item Merge commit
+			\item (Squash merge*)
+			\item (Rebase*)
+		\end{enumerate}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Fast-forward}
+		
+		The master branch label is moved to commit C
+		\begin{center}
+			\includegraphics[scale=0.58]{Images/fast-forward.png}
+		\end{center}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Fast-forward NOT possible}
+		
+		If label moved to commit C, then commit D is dangling and work is lost.
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/fast-forward_not_possible.png}
+		\end{center}
+		
+		\textit{Note:} in this situation, it will be a Merge commit
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Fast-forward merging steps}
+		
+		\begin{enumerate}
+			\item git checkout master
+			\item git merge featureX
+				\begin{center}
+					$\rightarrow$ defaults to attempting a fast-forward merge
+				\end{center}
+			\item git branch -d featureX
+		\end{enumerate}
+
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/ff_merge_steps.png}
+		\end{center}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Merge commit}
+		
+		\begin{itemize}
+			\item Combines the commits at the tip of the branches
+			\item Places the results in the merge commit
+			\item M has two parents
+		\end{itemize}
+		
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/merge_commit.png}
+		\end{center}
+	
+	\end{frame}
+
+
+	\begin{frame}[plain]
+		\frametitle{Merge commit steps}
+		\begin{enumerate}
+			\item git checkout master
+			\item git merge featureX
+				\begin{itemize}
+					\item accept or modify the message
+					\item even if fast-forwardable, you can force merge commit \\
+					\begin{center}
+						git merge \textbf{--no-ff} featureX
+					\end{center}
+				\end{itemize}
+			\item git branch -d featureX
+		\end{enumerate}
+		
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/merge_commit_no_conflicts.png}
+		\end{center}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Conflict!!!}
+	
+		\begin{center}
+			\includegraphics[scale=0.45]{Images/merge_commit_conflict.png}
+		\end{center}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Merge commit: Different hunks}
+		
+		\begin{center}
+			\includegraphics[scale=0.3]{Images/merge_conflicts_diff_hunks.png}
+		\end{center}
+		
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Small, frequent merges are the easiest}
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/small_merges.png}
+		\end{center}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Merge commit situation}
+	
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/merge_situation.png}
+		\end{center}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Merge commit steps}
+
+		\begin{enumerate}
+			\item git checkout master 
+			\item git merge featureX
+			\item \begin{enumerate}
+				\item CONFLICT $\rightarrow$ Both FileA.txt were Modified
+				\item files with conflicts are \textbf{modified by Git} and placed in working tree
+			\end{enumerate}
+			\item fix FileA.txt
+			\item git add FileA.txt
+			\item git commit -m ``$\ldots$''
+			\item git branch -d featureX
+		\end{enumerate}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Display conflict}
+		
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/display_conflict.png}
+		\end{center}
+		
+	\end{frame}
+
+	\section{Remote Repositories}
+	\begin{frame}[plain]
+		Two famous Hosted options:
+		\begin{center}
+			\includegraphics[scale=0.2]{Images/GitHub-Logo.png}
+		\end{center}
+		and
+		\begin{center}
+			\includegraphics[scale=0.2]{Images/Bitbucket_Logo.png}
+		\end{center}
+		
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Creating and cloning}
+		
+		\begin{enumerate}
+			\item Create a repository in GitHub 
+			\item Clone repository locally 
+				\begin{itemize}
+					\item git clone $<$url$>$
+					\item git clone -b $<\text{branch-name}>$ $<$url$>$
+				\end{itemize}
+		\end{enumerate}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Information on remote repo}
+		git remote -v 
+		\begin{center}
+			\includegraphics[scale=0.7]{Images/remote_verbose.png}
+		\end{center}
+
+		git remote show origin
+		\begin{center}
+			\includegraphics[scale=0.7]{Images/remote_show.png}
+		\end{center}
+
+		git remote add $<\text{name}>$ $<\text{url}>$
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Tracking branch}
+	
+		\begin{center}
+			\includegraphics[scale=0.58]{Images/tracking_branch.png}
+		\end{center}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Tracking branches, related but decoupled}
+		
+		\begin{center}
+			\includegraphics[scale=0.55]{Images/tracking_related.png}
+		\end{center}
+		
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Push, pull and fetch}
+	
+		\begin{enumerate}
+			\item git fetch $<\text{remote}>$ $<\text{branch-name}>$
+			\item git push $<\text{remote}>$ $<\text{branch-name}>$
+			\item git pull $<\text{remote}>$ $<\text{branch-name}>$ 
+		\end{enumerate}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Fetch}
+	
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/fetch.png}
+		\end{center}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Pull with fast-forward}
+		
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/pull_ff.png}
+		\end{center}
+		
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Pull with merge commit}
+	
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/pull_merge.png}
+		\end{center}	
+	
+	\end{frame}
+
+	\section{Rebasing}
+	\begin{frame}[plain]
+		\frametitle{Rebasing}
+	
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/rebase.png}
+		\end{center}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Rebase is a merge}
+	
+		\begin{center}
+			\includegraphics[scale=0.55]{Images/rebase_merge_conflict.png}
+		\end{center}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Steps}
+		
+		\begin{enumerate}
+			\item git checkout featureX
+			\item git rebase master
+				\begin{enumerate}
+					\item CONFLICT
+				\end{enumerate}
+			\item git status
+				\begin{enumerate}
+					\item Both modified fileA.txt
+				\end{enumerate}
+			\item Fix fileA.txt
+			\item git add fileA.txt
+			\item git rebase --continue
+		\end{enumerate}
+		
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Merge vs Rebase}
+	
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/diff_merge_rebase.png}
+		\end{center}
+	
+	\end{frame}
+
+
+	\begin{frame}[plain]
+		\frametitle{Rewritting history with Interactive rebase}
+	
+		\begin{center}
+			\includegraphics[scale=0.6]{Images/rebase-int.png}
+		\end{center}
+	
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Example}
+	
+		\begin{center}
+			\includegraphics[scale=0.5]{Images/squash_diff.png}
+		\end{center}
+	
+	\end{frame}
+
+
+	\section{Pull requests}
+	\begin{frame}[plain]
+		\frametitle{When to create a pull request?}
+		\begin{enumerate}
+			\item When the branch is created
+			\item When you want comments on the branch
+			\item When the branch is ready for review/merging
+		\end{enumerate}
+	\end{frame}
+\end{document}
